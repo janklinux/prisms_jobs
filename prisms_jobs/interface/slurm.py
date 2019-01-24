@@ -354,7 +354,8 @@ def submit(substr, write_submit_script=None):
         stdout, stderr, returncode = run(["sbatch"], input=substr, stdin=subprocess.PIPE)  #pylint: disable=unused-variable
     print(stdout[:-1])
     if re.search("error", stdout):
-        raise JobsError(0, "Submission error.\n" + stdout + "\n" + stderr)
+        print(stdout)
+        raise JobsError(0, "Submission error.\n")
     else:
         jobid = stdout.rstrip().split()[-1]
         return jobid
