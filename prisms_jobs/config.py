@@ -1,16 +1,11 @@
-"""Configuration"""
-from __future__ import (absolute_import, division, print_function, unicode_literals)
-from builtins import *
+from __future__ import absolute_import, division, print_function, unicode_literals
 
 import imp
 import json
 import os
-import six
 import socket
-import warnings
 from distutils.spawn import find_executable
 
-import prisms_jobs
 
 __settings = None
 __software = None
@@ -103,7 +98,6 @@ def _check_hostname_update_selection(curs):
 
     curs.execute("SELECT jobid FROM jobs WHERE jobstatus!='C' AND hostname REGEXP ?",
                  (hostname_regex, ))
-
 
 def set_update_selection_method(update_method=None):
     """Enable customization of which jobs are selected for JobDB.update()

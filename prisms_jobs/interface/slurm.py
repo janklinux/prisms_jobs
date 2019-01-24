@@ -1,10 +1,5 @@
-""" Functions for interfacing between slurm and the prisms_jobs module """
+from __future__ import absolute_import, division, print_function, unicode_literals
 
-#pylint: disable=line-too-long, too-many-locals, too-many-branches
-from __future__ import (absolute_import, division, print_function, unicode_literals)
-from builtins import *
-
-### External ###
 import datetime
 import os
 import re
@@ -13,9 +8,10 @@ import time
 
 from io import StringIO
 
-### Internal ###
+import prisms_jobs
 from prisms_jobs import JobsError
-from prisms_jobs.misc import getlogin, run, seconds
+from prisms_jobs.misc import getlogin, run
+
 
 def _squeue(jobid=None, username=getlogin(), full=False, sformat=None):    #pylint: disable=unused-argument
     """Return the stdout of squeue minus the header lines.
@@ -323,7 +319,6 @@ def submit(substr, write_submit_script=None):
             lines containing '#SBATCH -J'; otherwise, submit via commandline. If
             not specified, uses ``prisms_jobs.config['write_submit_script']``.
             
-    
     Returns:
         str: ID of submitted job
     
@@ -340,7 +335,7 @@ def submit(substr, write_submit_script=None):
             r"""Error in pbs.misc.submit(). Jobname ("#SBATCH\s+-J\s+(.*)\s") not found in submit string.""")
     
     if write_submit_script is None:
-        write_submit_script = prisms_jobs.config['write_submit_script']
+        write_submit_script = prisms_jobs.config(['write_submit_script'])
     
     if write_submit_script:
         if os.path.exists(jobname):
