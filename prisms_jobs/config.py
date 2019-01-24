@@ -31,10 +31,10 @@ def detect_software():
             * 'torque' - detected via 'qsub'
             * 'slurm' - detected via 'sbatch'
     """
-    if find_executable('qsub') is not None:
-        return 'torque'
-    elif find_executable('sbatch') is not None:
+    if find_executable('sbatch') is not None:
         return 'slurm'
+    elif find_executable('qsub') is not None:
+        return 'torque'
     else:
         return None
 
