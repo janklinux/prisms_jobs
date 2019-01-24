@@ -334,8 +334,8 @@ def submit(substr, write_submit_script=None):
             None,
             r"""Error in pbs.misc.submit(). Jobname ("#SBATCH\s+-J\s+(.*)\s") not found in submit string.""")
     
-    if write_submit_script is None:
-        write_submit_script = prisms_jobs.config(['write_submit_script'])
+#    if write_submit_script is None:
+#        write_submit_script = prisms_jobs.config(['write_submit_script'])
     
     if write_submit_script:
         if os.path.exists(jobname):
