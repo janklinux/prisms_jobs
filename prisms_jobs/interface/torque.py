@@ -27,7 +27,10 @@ def _getversion():
 
     # call 'qstat' using subprocess
     stdout = run(opt)[0]
-    
+
+    if 'Unknown option: version' in stdout:
+        return None
+
     # return the version number
     return stdout.rstrip("\n").lower().lstrip("version: ")
 
