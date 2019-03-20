@@ -102,6 +102,7 @@ def sub_string(job):
         jobstr += "#SBATCH -A {0}\n".format(job.account)
     jobstr += "#SBATCH -t {0}\n".format(job.walltime)
     jobstr += "#SBATCH -n {0}\n".format(job.nodes*job.ppn)
+    jobstr += "#SBATCH -N {0}\n".format(job.nodes)
     if job.pmem is not None:
         jobstr += "#SBATCH --mem-per-cpu={0}\n".format(job.pmem)
     if job.qos is not None:

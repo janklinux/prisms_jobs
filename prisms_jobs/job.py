@@ -1,18 +1,11 @@
-""" Class for individual Job objects """
-from __future__ import (absolute_import, division, print_function, unicode_literals)
+from __future__ import absolute_import, division, print_function, unicode_literals
 from builtins import *
-
-### External ###
-# import subprocess
 import os
-import re
-import sys
 
-### Local ###
-import prisms_jobs
 from prisms_jobs import config, jobdb, misc
 
-class Job(object):  #pylint: disable=too-many-instance-attributes
+
+class Job(object):  # pylint: disable=too-many-instance-attributes
     """Represents a computational job
 
     Initialize either with all the parameters, or with 'substr' a submit script as a string.
@@ -92,7 +85,7 @@ class Job(object):  #pylint: disable=too-many-instance-attributes
     """
 
 
-    def __init__(self, name="STDIN", account=None, nodes=None, ppn=None, walltime=None, #pylint: disable=too-many-arguments, too-many-locals
+    def __init__(self, name="STDIN", account=None, nodes=None, ppn=None, walltime=None,
                  pmem=None, qos=None, queue=None, exetime=None, message="a", email=None,
                  priority="0", command=None, auto=False, substr=None):
 
